@@ -8,18 +8,17 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/", (req, res) => {
-  console.log("i was pinged ");
+app.get("/deviation/:line", (req, res) => {
+  const line = req.params.line;
+  console.log(line);
   request(
     {
-      url:
-        "https://api.sl.se/api2/realtimedeparturesV4.String?key=387faad00f39470d93e2233bc7b387f1&siteid=9192&timewindow=1000",
+      url: `https://api.sl.se/api2/deviationsrawdata.Json?key=1650cf21143340f2a080667790a9a506&lineNumber=${line}`,
     },
     (error, response, body) => {
       if (error || response.statusCode !== 200) {
         return res.status(500).json({ type: "error", message: err.message });
       }
-
       res.json(JSON.parse(body));
     }
   );
