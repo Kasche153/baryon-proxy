@@ -13,8 +13,7 @@ app.get("/deviation/:line", (req, res) => {
   console.log(line);
   request(
     {
-      url: `https://api.sl.se/api2/deviationsrawdata.Json?key=8af86a22170d47ee8edca745db35d1ac
-      &lineNumber=${line}`,
+      url: `https://api.sl.se/api2/deviationsrawdata.Json?key=a9dc2299356d4af9bc53ad5a20a49cbe&lineNumber=${line}`,
     },
     (error, response, body) => {
       if (error || response.statusCode !== 200) {
